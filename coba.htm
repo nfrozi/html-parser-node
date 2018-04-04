@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="ie ie8"> <![endif]-->
+<!--[if IE 9]><html class="ie ie9"> <![endif]-->
+<!--[if gt IE 9]><!-->	<html> <!--<![endif]-->
+<head>
+<!-- Basic -->
+<meta charset="utf-8">
+<title>TIKA Extracting HTML Document</title>
+<meta name="description" content="TIKA Extracting HTML Document - Learn TIKA in simple and easy steps starting from basic to advanced concepts with examples including Overview, Architecture, Environment, Referenced API, File Formats, Document Type Detection, Content Extraction, Metadata Extraction, Language Detection, GUI, Extracting PDF, Extracting ODF, Extracting MS-Office Files, Extracting Text Document, Extracting HTML Document, Extracting XML Document, Extracting .class File, Extracting JAR File, Extracting Image File, Extracting mp4 Files, Extracting mp3 Files." />
+<meta name="keywords" content="TIKA, Tutorial, Overview, Architecture, Environment, Referenced API, File Formats, Document Type Detection, Content Extraction, Metadata Extraction, Language Detection, GUI, Extracting PDF, Extracting ODF, Extracting MS-Office Files, Extracting Text Document, Extracting HTML Document, Extracting XML Document, Extracting .class File, Extracting JAR File, Extracting Image File, Extracting mp4 Files, Extracting mp3 Files." />
+<base href="https://www.tutorialspoint.com/" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<meta property="og:locale" content="en_US" />
+<meta property="og:type" content="website" />
+<meta property="fb:app_id" content="471319149685276" />
+<meta property="og:site_name" content="www.tutorialspoint.com" />
+<meta name="robots" content="index, follow"/>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="author" content="tutorialspoint.com">
+<script type="text/javascript" src="https://www.tutorialspoint.com/theme/js/script-min-v4.js?v=2"></script>
+<link rel="stylesheet" href="https://www.tutorialspoint.com/theme/css/style-min.css?v=3">
+<script async='async' src='https://www.googletagservices.com/tag/js/gpt.js'></script>
+<script>
+  var googletag = googletag || {};
+  googletag.cmd = googletag.cmd || [];
+</script>
+<script>
+googletag.cmd.push(function() {
+    googletag.defineSlot('/60931893/tutorial_right_bottom', [[300, 250], [300, 600]], 'div-gpt-ad-1510138782906-0').addService(googletag.pubads());
+    googletag.defineSlot('/60931893/tutorial_right_middle', [[300, 250], [300, 600]], 'div-gpt-ad-1510138782906-1').addService(googletag.pubads());
+    googletag.defineSlot('/60931893/tutorial_right_top', [300, 250], 'div-gpt-ad-1510138782906-2').addService(googletag.pubads());
+    googletag.defineSlot('/60931893/tutorial_bottom_leader_board', [[600, 400], [300, 250], [480, 320], [468, 60], [336, 280], [600, 200], [580, 400]], 'div-gpt-ad-1510138782906-3').addService(googletag.pubads());
+    googletag.pubads().enableSingleRequest();
+    googletag.enableServices();
+});
+function openNav() {	
+  document.getElementById("mySidenav").style.width = "250px";
+  document.getElementById("right_obs").style.display = "block";
+}
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+  document.getElementById("right_obs").style.display = "none";
+}
+function close_obs_sidenav(){
+  document.getElementById("mySidenav").style.width = "0";
+  document.getElementById("right_obs").style.display = "none";
+}
+</script>
+<!-- Head Libs -->
+<!--[if IE 8]>
+<link rel="stylesheet" type="text/css" href="/theme/css/ie8.css">
+<![endif]-->
+<style>
+select{ border:0 !important; outline: 1px inset black !important; outline-offset: -1px !important; }
+.btnsbmt{ background: #270e9d !important;}
+ul.nav-list.primary>li a.videolink{    background: none; margin: 0px; padding: 0px; border: 1px solid #d6d6d6;}
+div.feature-box div.feature-box-icon, .col-md-3 .course-box, li.heading, div.footer-copyright { background: #270e9d url(/images/pattern.png) repeat center center !important;}
+.sub-main-menu .sub-menuu div:hover, .sub-main-menu .viewall, header nav ul.nav-main li a:hover, button.btn-responsive-nav, header div.search button.btn-default { background: #270e9d !important;}
+.submenu-item{ border-bottom: 2px solid #270e9d !important; border-top: 2px solid #270e9d !important }
+.ace_scroller{overflow: auto!important;}
+a.demo{font-family: "Open Sans",Arial,sans-serif; background:#270e9d; color:#fff; font-size:13px; padding:3px 10px; border:1px solid #d6d6d6; position:absolute; right:5px; margin:-6px 17px 0px 0px;}
+a.demo:hover{opacity:.8}
+</style>
+<script>
+$(document).ready(function() {
+  $('input[name="q"]').keydown(function(event){
+    if(event.keyCode == 13) {
+      event.preventDefault();
+      return false;
+    }
+  });
+});
+</script>
+</head>
+<body onload="prettyPrint()">
+<div class="wrapLoader">
+   <div class="imgLoader">
+      <img  src="/images/loading-cg.gif" alt="" width="70" height="70" />
+   </div>
+</div>
+<div id="right_obs" class="display-none" onclick="close_obs_sidenav()"></div>
+<header>
+   <div class="container">			
+      <h1 class="logo">
+      <a href="index.htm" title="tutorialspoint">
+      <img alt="tutorialspoint" src="/tika/images/logo.png">
+      </a>
+      </h1>			
+      <ul class="tp-inline-block pull-right" id="tp-head-icons">
+        <li>
+           <div class="tp-second-nav tp-display-none tp-pointer" onclick="openNav()">
+              <i class="fa fa-th-large fa-lg"></i>
+           </div>
+        </li>
+     </ul>
+     <button class="btn btn-responsive-nav btn-inverse" data-toggle="collapse" data-target=".nav-main-collapse" id="pull" style="top: 24px!important"> <i class="icon icon-bars"></i> </button>
+      <nav>
+         <ul class="nav nav-pills nav-top">
+            <li><a href="/about/about_careers.htm" style="background: #fffb09; font-weight: bold;"><i class="icon icon-suitcase"></i> Jobs</a></li>
+            <li> <a target="_blank" href="/programming_examples/"><i class="fa fa-cubes"></i> &nbsp;Examples</a> </li>
+            <li> <a href="https://www.tutorialspoint.com/whiteboard.htm"><img src="theme/css/icons/image-editor.png" alt="Whiteboard" title="Whiteboard"> &nbsp;Whiteboard</a> </li>
+            <li> <a href="https://www.tutorialspoint.com/netmeeting.php"><i class="fa-camera"></i> &nbsp;Net Meeting</a> </li>
+            <li> <a href="/online_dev_tools.htm"> <i class="dev-tools-menu" style="opacity:.5"></i> Tools </a> </li>
+            <li> <a href="/articles/index.php"><i class="icon icon-file-text-o"></i> &nbsp;Articles</a> </li>            
+            <li class="top-icons">
+              <ul class="social-icons">
+              <li class="facebook"><a href="https://www.facebook.com/tutorialspointindia" target="_blank" data-placement="bottom" title="tutorialspoint @ Facebook">Facebook</a></li>
+              <li class="googleplus"><a href="https://plus.google.com/u/0/116678774017490391259/posts" target="_blank" data-placement="bottom" title="tutorialspoint @ Google+">Google+</a></li>
+              <li class="twitter"><a href="https://www.twitter.com/tutorialspoint" target="_blank" data-placement="bottom" title="tutorialspoint @ Twitter">Twitter</a></li>
+              <li class="linkedin"><a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" data-placement="bottom" title="tutorialspoint @ Linkedin">Linkedin</a></li>
+              <li class="youtube"><a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" data-placement="bottom" title="tutorialspoint YouTube">YouTube</a></li>
+              </ul>
+           </li>
+         </ul>
+      </nav>
+    </div>
+     <div class="sidenav" id="mySidenav">
+     <div class="navbar nav-main">
+      <div class="container">
+         <nav class="nav-main mega-menu">
+            <ul class="nav nav-pills nav-main" id="mainMenu">
+               <li class="dropdown no-sub-menu"> <a class="dropdown" href="index.htm"><i class="icon icon-home"></i> Home</a> </li>   
+               <li class="dropdown no-sub-menu"><a class="dropdown" href="/questions/index.php"><i class="fa fa-send"></i> Q/A </a> </li>
+               <li class="dropdown"><a class="dropdown" href="tutorialslibrary.htm"><span class="tut-lib"> Library </span></a></li>
+               <li class="dropdown no-sub-menu"><a class="dropdown" href="videotutorials/index.htm"><i class="fa-toggle-right"></i> Videos </a></li>
+               <li class="dropdown no-sub-menu"><a class="dropdown" href="tutor_connect/index.php"><i class="fa-user"> </i> Tutors</a></li>
+               <li class="dropdown no-sub-menu"><a class="dropdown" href="codingground.htm"><i class="fa-code"></i> Coding Ground </a> </li>
+               <li class="dropdown no-sub-menu"><a class="dropdown" href="https://store.tutorialspoint.com/"><i class="fa-usd"></i> Store </a> </li>
+               <li class="dropdown no-sub-menu">
+                  <div class="searchform-popup">
+                     <input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == 'Search your favorite tutorials...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search your favorite tutorials...';}" autocomplete="off">
+                     <div class="magnifying-glass"><i class="icon-search"></i> Search </div>
+                 </div>
+               </li>
+            </ul>
+         </nav>
+        </div>
+      </div>	
+     </div>	
+   </div>	
+</header>
+<div style="clear:both;"></div>
+<div role="main" class="main">
+<div class="container">
+<div class="row">
+<div class="col-md-2">
+<aside class="sidebar">
+<style>
+.ts{
+  vertical-align:middle !important;
+  text-align:center !important;   
+}
+</style>
+<div class="mini-logo">
+<img src="/tika/images/apache-tika-mini-logo.jpg" alt="APACHE TIKA Tutorial" />
+</div>
+<ul class="nav nav-list primary left-menu">
+<li class="heading">TIKA Tutorial</li>
+<li><a href="/tika/index.htm">TIKA - Home</a></li>
+<li><a href="/tika/tika_overview.htm">TIKA - Overview</a></li>
+<li><a href="/tika/tika_architecture.htm">TIKA - Architecture</a></li>
+<li><a href="/tika/tika_environment.htm">TIKA - Environment</a></li>
+<li><a href="/tika/tika_referenced_api.htm">TIKA - Referenced API</a></li>
+<li><a href="/tika/tika_file_formats.htm">TIKA - File Formats</a></li>
+<li><a href="/tika/tika_document_type_detection.htm">TIKA - Document Type Detection</a></li>
+<li><a href="/tika/tika_content_extraction.htm">TIKA - Content Extraction</a></li>
+<li><a href="/tika/tika_metadata_extraction.htm">TIKA - Metadata Extraction</a></li>
+<li><a href="/tika/tika_language_detection.htm">TIKA - Language Detection</a></li>
+<li><a href="/tika/tika_gui.htm">TIKA - GUI</a></li>
+</ul>
+<ul  class="nav nav-list primary left-menu" > 
+<li class="heading">TIKA Examples</li>
+<li><a href="/tika/tika_extracting_pdf.htm">TIKA - Extracting PDF</a></li>
+<li><a href="/tika/tika_extracting_odf.htm">TIKA - Extracting ODF</a></li>
+<li><a href="/tika/tika_extracting_ms_office_files.htm">TIKA - Extracting MS-Office Files</a></li>
+<li><a href="/tika/tika_extracting_text_document.htm">TIKA - Extracting Text Document</a></li>
+<li><a href="/tika/tika_extracting_html_document.htm">TIKA - Extracting HTML Document</a></li>
+<li><a href="/tika/tika_extracting_xml_document.htm">TIKA - Extracting XML Document</a></li>
+<li><a href="/tika/tika_extracting_class_file.htm">TIKA - Extracting .class File</a></li>
+<li><a href="/tika/tika_extracting_jar_file.htm">TIKA - Extracting JAR File</a></li>
+<li><a href="/tika/tika_extracting_image_file.htm">TIKA - Extracting Image File</a></li>
+<li><a href="/tika/tika_extracting_mp4_files.htm">TIKA - Extracting mp4 Files</a></li>
+<li><a href="/tika/tika_extracting_mp3_files.htm">TIKA - Extracting mp3 Files</a></li>
+</ul>
+<ul class="nav nav-list primary left-menu" >
+<li class="heading">TIKA Useful Resources</li>
+<li><a href="/tika/tika_quick_guide.htm">TIKA - Quick Guide</a></li>
+<li><a href="/tika/tika_useful_resources.htm">TIKA - Useful Resources</a></li>
+<li><a href="/tika/tika_discussion.htm">TIKA - Discussion</a></li>
+</ul>
+<ul class="nav nav-list primary push-bottom left-menu special">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="/upsc_ias_exams.htm">UPSC IAS Exams Notes</a></li>
+<li><a target="_top" href="/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</aside>
+</div>
+<!-- PRINTING STARTS HERE -->
+<div class="row">
+<div class="content">
+<div class="col-md-7 middle-col">
+<h1>TIKA - Extracting HTML Document</h1>
+<div class="topgooglead">
+<hr />
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript">
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+src="https://pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+</div>
+<hr />
+<div class="pre-btn">
+<a href="/tika/tika_extracting_text_document.htm"><i class="icon icon-arrow-circle-o-left big-font"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="/tika/tika_extracting_xml_document.htm">Next Page <i class="icon icon-arrow-circle-o-right big-font"></i>&nbsp;</a>
+</div>
+<div class="clearer"></div>
+<hr />
+<p>Given below is the program to extract content and metadata from an HTML document.</p>
+<pre class="prettyprint notranslate">
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+
+import org.apache.tika.exception.TikaException;
+import org.apache.tika.metadata.Metadata;
+import org.apache.tika.parser.ParseContext;
+import org.apache.tika.parser.html.HtmlParser;
+import org.apache.tika.sax.BodyContentHandler;
+
+import org.xml.sax.SAXException;
+
+public class HtmlParse {
+
+   public static void main(final String[] args) throws IOException,SAXException, TikaException {
+
+      //detecting the file type
+      BodyContentHandler handler = new BodyContentHandler();
+      Metadata metadata = new Metadata();
+      FileInputStream inputstream = new FileInputStream(new File("example.html"));
+      ParseContext pcontext = new ParseContext();
+      
+      //Html parser 
+      HtmlParser htmlparser = new HtmlParser();
+      htmlparser.parse(inputstream, handler, metadata,pcontext);
+      System.out.println("Contents of the document:" + handler.toString());
+      System.out.println("Metadata of the document:");
+      String[] metadataNames = metadata.names();
+      
+      for(String name : metadataNames) {
+         System.out.println(name + ":   " + metadata.get(name));  
+      }
+   }
+}
+</pre>
+<p>Save the above code as <b>HtmlParse.java</b>, and compile it from the command prompt by using the following commands &minus;</p>
+<pre class="result notranslate">
+javac HtmlParse.java
+java HtmlParse 
+</pre>
+<p>Given below is the snapshot of example.txt file.</p>
+<img src="/tika/images/example3.jpg" alt="example" />
+<p>The HTML document has the following properties&minus;</p>
+<img src="/tika/images/document_properties1.jpg" alt="Document Properties1" />
+<p>If you execute the above program it will give you the following output.</p>
+<p><b>Output</b> &minus;</p>
+<pre class="result notranslate">
+<b>Contents of the document:</b>
+
+	Name	                     Salary	    age
+	Ramesh Raman	             50000	    20
+	Shabbir Hussein	             70000          25
+	Umesh Raman	             50000	    30
+	Somesh	                     50000	    35
+
+<b>Metadata of the document:</b>
+
+title:   HTML Table Header
+Content-Encoding:   windows-1252
+Content-Type:   text/html; charset = windows-1252
+dc:title:   HTML Table Header
+</pre>
+<hr />
+<div class="pre-btn">
+<a href="/tika/tika_extracting_text_document.htm"><i class="icon icon-arrow-circle-o-left big-font"></i> Previous Page</a>
+</div>
+<div class="print-btn center">
+<a href="/cgi-bin/printpage.cgi" target="_blank"><i class="icon icon-print big-font"></i> Print</a>
+</div>
+<div class="nxt-btn">
+<a href="/tika/tika_extracting_xml_document.htm">Next Page <i class="icon icon-arrow-circle-o-right big-font"></i>&nbsp;</a>
+</div>
+<hr />
+<!-- PRINTING ENDS HERE -->
+<div class="bottomgooglead">
+<div class="bottomadtag">Advertisements</div>
+<!-- /60931893/tutorial_bottom_leader_board -->
+<div id='div-gpt-ad-1510138782906-3'>
+<script>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1510138782906-3'); });
+</script>
+</div>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-md-3" id="rightbar">
+<div class="ysubscribe">
+  <script async src="https://apis.google.com/js/platform.js"></script>
+  <div class="g-ytsubscribe" data-channelid="UCVLbzhxVTiTLiVKeGV7WEBg" data-layout="full" data-count="default"></div>
+</div>
+<div class="rightgooglead">
+<!-- /60931893/tutorial_right_top -->
+<div id='div-gpt-ad-1510138782906-2' style='height:250px; width:300px;'>
+<script>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1510138782906-2'); });
+</script>
+</div>
+</div>
+<div class="rightgooglead">
+<!-- /60931893/tutorial_right_middle -->
+<div id='div-gpt-ad-1510138782906-1'>
+<script>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1510138782906-1'); });
+</script>
+</div>
+</div>
+<div class="rightgooglead">
+<!-- /60931893/tutorial_right_bottom -->
+<div id='div-gpt-ad-1510138782906-0'>
+<script>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1510138782906-0'); });
+</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="footer-copyright">
+<div class="container">
+<div class="row">
+<div class="col-md-1">
+<a href="index.htm" class="logo"> <img alt="Tutorials Point" class="img-responsive" src="/scripts/img/logo-footer.png"> </a>
+</div>
+<div class="col-md-4 col-sm-12 col-xs-12">
+   <nav id="sub-menu">
+      <ul>
+         <li><a href="/about/tutorials_writing.htm">Write for us</a></li>
+         <li><a href="/about/faq.htm">FAQ's</a></li>
+         <li><a href="/about/about_helping.htm">Helping</a></li>
+         <li><a href="/about/contact_us.htm">Contact</a></li>
+      </ul>
+   </nav>
+</div>
+<div class="col-md-3 col-sm-12 col-xs-12">
+<p>&copy; Copyright 2018. All Rights Reserved.</p>
+</div>
+<div class="col-md-4 col-sm-12 col-xs-12">
+   <div class="news-group">
+      <input type="text" class="form-control-foot search" name="textemail" id="textemail" autocomplete="off" placeholder="Enter email for newsletter" onfocus="if (this.value == 'Enter email for newsletter...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Enter email for newsletter...';}">
+      <span class="input-group-btn"> <button class="btn btn-default btn-footer" id="btnemail" type="submit" onclick="javascript:void(0);">go</button> </span>
+      <div id="newsresponse"></div>
+   </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Libs -->
+<script type="text/javascript" src="/theme/js/custom-min.js?v=7"></script>
+<script src="https://www.google-analytics.com/urchin.js">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+$('.pg-icon').click(function(){
+   $('.wrapLoader').show();
+});
+</script>
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "TIKA Extracting HTML Document",
+    "name": "TIKA Extracting HTML Document",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://www.tutorialspoint.com/tika/tika_extracting_html_document.htm"
+    },
+    "image": {
+        "@type": "ImageObject",
+        "url": "https://www.tutorialspoint.com/tika/images/example3.jpg",
+        "width": 351,
+        "height": 559
+    },
+    "author": {
+        "@type": "Organization",
+        "name": "Tutorials Point",
+        "url": "https://www.tutorialspoint.com",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://www.tutorialspoint.com/images/logo60.png",
+            "width": 210,
+            "height": 60
+        }
+    },
+    "datePublished": "January 08 2018 06:24:44.",
+    "dateModified": "January 08 2018 06:24:44.",
+    "publisher": {
+        "@type": "Organization",
+        "name": "Tutorials Point",
+        "url": "https://www.tutorialspoint.com",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://www.tutorialspoint.com/images/logo60.png",
+            "width": 210,
+            "height": 60
+        }
+    },
+    "description": "Given below is the program to extract content and metadata from an HTML document...."
+}
+</script>
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+        {
+            "@type": "ListItem",
+            "position": 1,
+            "item": {
+                "name": "www.tutorialspoint.com",
+                "@id": "https://www.tutorialspoint.com"
+            }
+        },
+        {
+            "@type": "ListItem",
+            "position": 2,
+            "item": {
+                "name": "Tika",
+                "@id": "https://www.tutorialspoint.com/tika"
+            }
+        },
+        {
+            "@type": "ListItem",
+            "position": 3,
+            "item": {
+                "name": "TIKA - Extracting HTML Document"
+            }
+        }
+    ]
+}
+</script>
+</div>
+</body>
+</html>
